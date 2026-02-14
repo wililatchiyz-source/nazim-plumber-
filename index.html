@@ -1,17 +1,435 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nazim Plumber</title>
+    <title>Nazim Plomberie</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #2c3e50; /* Dark Blue */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            color: white;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .header-logo i {
+            font-size: 2rem;
+            margin-right: 10px;
+            color: #bdc3c7;
+        }
+
+        .header-logo span {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .header-logo .blue-text { color: #3498db; }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            color: #ecf0f1;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover { color: #3498db; }
+
+        .cta-btn {
+            background-color: #e74c3c; /* Red */
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .cta-btn:hover { background-color: #c0392b; }
+        .cta-btn small { display: block; font-weight: 400; font-size: 0.7rem; text-transform: none; margin-top: 2px;}
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.6)), url('https://images.unsplash.com/photo-1584622050111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            color: white;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        /* Large Logo Overlay on the right */
+        .hero-logo-overlay {
+            text-align: center;
+            opacity: 0.9;
+        }
+        
+        .hero-logo-overlay i {
+            font-size: 5rem;
+            color: #2ecc71; /* Green accent */
+            background: white;
+            border-radius: 50%;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hero-logo-overlay h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: #2c3e50;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+        }
+
+        .hero-logo-overlay h2 span { color: #3498db; }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #3498db; /* Blue Border */
+            border-radius: 5px;
+            padding: 40px 20px;
+            flex: 1;
+            transition: transform 0.3s;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+
+        .card i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        /* --- BOTTOM SECTION (Info & Form) --- */
+        .bottom-section {
+            padding: 40px 10%;
+            display: flex;
+            justify-content: space-between;
+            background-color: #e5e8e8;
+        }
+
+        .left-column {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .why-us-list {
+            margin-top: 20px;
+        }
+
+        .why-us-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+
+        .why-us-list li i {
+            color: #27ae60; /* Green check */
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .right-column {
+            flex: 1;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            background: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            width: 150px;
+            align-self: flex-end;
+        }
+
+        .submit-btn:hover { background-color: #2980b9; }
+
+        .contact-footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .social-icons i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #555;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header, .hero, .services, .bottom-section {
+                padding: 20px;
+                flex-direction: column;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                margin: 20px 0;
+                text-align: center;
+                display: none; /* Hide menu on mobile for simplicity */
+            }
+
+            .cards-container {
+                flex-direction: column;
+            }
+
+            .hero {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .hero-logo-overlay { display: none; } /* Hide big logo on mobile */
+
+            .left-column { margin-bottom: 40px; padding-right: 0;}
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Header -->
     <header>
-        <img src="logo.jpg" alt="Logo">
+        <div class="header-logo">
+            <i class="fa-solid fa-faucet-drip"></i>
+            <span>
+                NAZIM<br>
+                <span class="blue-text">PLOMBERIE</span>
+            </span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">À Propos</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+123456789" class="cta-btn">
+            Urgence Dépannage
+            <small>Appeler maintenant</small>
+        </a>
     </header>
-    <main>
-        <h1>Welcome to Nazim Plumber</h1>
-        <p>Your satisfaction is our priority!</p>
-    </main>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>L'expertise en plomberie et climatisation au service de votre confort</h1>
+            <p>Installation, entretien et dépannage rapide (Chaud & Froid) pour particuliers et professionnels.</p>
+        </div>
+        
+        <div class="hero-logo-overlay">
+            <i class="fa-solid fa-droplet"></i>
+            <h2>Nazim<br><span>Plomberie</span></h2>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2 class="section-title">NOS SERVICES</h2>
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <i class="fa-solid fa-faucet"></i>
+                <h3>Plomberie Générale</h3>
+                <p>Installation colonne douche, évier, robinetterie & fuites d'eau. Réparations et entretien pour installations sanitaires.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+                <i class="fa-solid fa-fire-burner"></i> &nbsp; <i class="fa-regular fa-snowflake"></i>
+                <h3>Service Chaud & Froid</h3>
+                <p>Installation, entretien et dépannage de chauffage central (Chaudière murale et radiateurs).</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+                <i class="fa-solid fa-air-conditioner"></i> <!-- Note: fa-air-conditioner requires Pro, using custom icon logic or similar -->
+                <i class="fa-solid fa-wind"></i>
+                <h3>Installation Climatiseur</h3>
+                <p>Installation professionnelle de systèmes de climatisation, split systems et recharges de gaz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Section (Why Choose Us & Form) -->
+    <section class="bottom-section">
+        <!-- Left Side -->
+        <div class="left-column">
+            <h2 class="section-title">POURQUOI NOUS CHOISIR ?</h2>
+            <ul class="why-us-list">
+                <li><i class="fa-solid fa-circle-check"></i> Disponibilité</li>
+                <li><i class="fa-solid fa-circle-check"></i> Qualité</li>
+                <li><i class="fa-solid fa-circle-check"></i> Expertise</li>
+            </ul>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-column">
+            <h2 class="section-title">CONTACTEZ-NOUS</h2>
+            <form class="contact-form">
+                <div class="form-row">
+                    <input type="text" placeholder="Nom" class="form-group">
+                    <select class="form-group">
+                        <option>Particulier</option>
+                        <option>Professionnel</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="email" placeholder="Email" class="form-group">
+                    <input type="text" placeholder="Service" class="form-group">
+                </div>
+                <input type="text" placeholder="Téléphone">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit" class="submit-btn">ENVOYER</button>
+            </form>
+
+            <div class="contact-footer">
+                <div>
+                    Tél: 00 23 48 223 23<br>
+                    Constantine, Algérie 18 03
+                </div>
+                <div class="social-icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
